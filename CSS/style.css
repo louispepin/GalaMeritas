@@ -20,15 +20,22 @@ body {
     display: inline-block;
 }
 
-.footer {
-    padding: 20px;
-}
+.footer {}
 
 .content {
     padding: 20px;
     text-align: left;
 }
 
-.form-control {
+.coursSuivis {
+    overflow: auto;
+}
+
+.vote .form-control {
     max-width: 400px;
+}
+
+.vote .voteInput {
+    margin-top: 10px;
+    margin-left: 10px;
 }
