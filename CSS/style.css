@@ -1,0 +1,34 @@
+body {
+	background-image: url(../CSS/Images/stripe.png);
+    font-family: 'Oxygen', sans-serif;
+}
+
+.container {
+    background-color: #f8f8f8;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    padding: 20px;
+    text-align: center;
+}
+
+.banner {
+    max-width: 900px;
+    display: inline-block;
+}
+
+.footer {
+    padding: 20px;
+}
+
+.content {
+    padding: 20px;
+    text-align: left;
+}
+
+.form-control {
+    max-width: 400px;
+}
