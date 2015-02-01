@@ -24,18 +24,36 @@
     <h3>Entrez ici les cours auxquels vous étiez inscrits en Automne 2014 ainsi que ceux
         auxuels vous etes inscrits maintenant.</h3>
 
-    <div class="coursSuivis">
-        <div ng-repeat="c in cours" class="form-group" style="float: left; margin: 5px 10px 0 10px">
-            <div style="max-width: 400px; display: inline-block;">
-                <input type="text" ng-model="c.name" style="display: inline-block;" placeholder="Ex: INF1500" class="form-control"/>
+    <div class="row cours" style="margin-left: 10px;">
+        <div class="col-xs-6">
+            <h4>Automne 2014 <br/></h4>
+            <div ng-repeat="c in coursAut" class="form-group">
+                <div class="in" style="width: 80%">
+                    <input type="text" ng-model="c.name" class="form-control" placeholder="Ex: INF1500"/>
+                </div>
+                <div class="in">
+                    <button style="margin-left: 10px;" class="btn btn-danger" ng-click="actions.removeAut(c)">X</button>
+                </div>
             </div>
-            <button class="btn btn-danger" style="display: inline-block" ng-click="actions.remove(c)">X</button>
+            <button class="btn btn-success" ng-click="actions.addAut()">+</button>
+        </div>
+
+        <div class="col-xs-6">
+            <h4>Hiver 2015 <br/></h4>
+            <div ng-repeat="c in coursHiv" class="form-group">
+                <div class="in" style="width: 80%">
+                    <input type="text" ng-model="c.name" class="form-control" placeholder="Ex: INF1500"/>
+                </div>
+                <div class="in">
+                    <button style="margin-left: 10px;" class="btn btn-danger" ng-click="actions.removeHiv(c)">X</button>
+                </div>
+            </div>
+            <button class="btn btn-success" ng-click="actions.addHiv()">+</button>
         </div>
     </div>
 
-    <div style="clear: both; margin-top: 20px; margin-left: 10px">
-        <button class="btn btn-success" ng-click="actions.add()">+</button>
-        <button class="btn btn-primary" ng-click="actions.submitClasses()">Soumettre</button>
+    <div style="clear: both; margin-top: 20px;">
+        <button class="btn btn-primary" ng-disabled="coursAut.length == 0 && coursHiv.length == 0" ng-click="actions.submitClasses()">Soumettre</button>
     </div>
 
     <div class="vote">

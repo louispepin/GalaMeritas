@@ -16,45 +16,63 @@ angular.module('sondage', [])
             aux: ''
         };
 
-        $scope.cours = [
-            {
-                id: 0,
-                name: ''
-            },
-            {
-                id: 1,
-                name: ''
-            },
-            {
-                id: 2,
-                name: ''
-            }
-        ];
+        $scope.indexAut = 5;
+        $scope.indexHiv = 5;
 
-        $scope.index = 0;
+        $scope.coursAut = [{id: 0, name: ''}, {id: 1, name: ''}, {id: 2, name: ''}, {id: 3, name: ''}, {id: 4, name: ''}];
+        $scope.coursHiv = [{id: 0, name: ''}, {id: 1, name: ''}, {id: 2, name: ''}, {id: 3, name: ''}, {id: 4, name: ''}];
 
         $scope.actions = {
-            add: function () {
-                $scope.index++;
-                $scope.cours.push({
+            addAut: function () {
+                $scope.indexAut++;
+                $scope.coursAut.push({
                     id: $scope.index,
                     name: ''
                 })
             },
 
-            remove: function (c) {
+            addHiv: function () {
+                $scope.indexHiv++;
+                $scope.coursHiv.push({
+                    id: $scope.index,
+                    name: ''
+                })
+            },
+
+            removeAut: function (c) {
                 var index;
-                for (var i=0; i<$scope.cours.length; i++) {
-                    if ($scope.cours[i].id == c.id) {
+                for (var i=0; i<$scope.coursAut.length; i++) {
+                    if ($scope.coursAut[i].id == c.id) {
                         index = i;
                     }
                 }
 
-                $scope.cours.splice(index, 1);
+                $scope.coursAut.splice(index, 1);
+            },
+
+            removeHiv: function (c) {
+                var index;
+                for (var i=0; i<$scope.coursHiv.length; i++) {
+                    if ($scope.coursHiv[i].id == c.id) {
+                        index = i;
+                    }
+                }
+
+                $scope.coursHiv.splice(index, 1);
             },
 
             submitClasses: function () {
-                alert(angular.toJson($scope.cours));
+                var cours = [];
+
+                for(var i=0; i<$scope.coursAut.length; i++) {
+                    cours.push($scope.coursAut[i].name);
+                }
+
+                for(var i=0; i<$scope.coursHiv.length; i++) {
+                    cours.push($scope.coursHiv[i].name);
+                }
+
+                alert(angular.toJson(cours));
             },
 
             submitAll: function () {

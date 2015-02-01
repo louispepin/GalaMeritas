@@ -27,12 +27,14 @@ body {
     text-align: left;
 }
 
-.coursSuivis {
+.cours .form-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
     overflow: auto;
 }
 
-.vote .form-control {
-    max-width: 400px;
+.cours .in {
+    float: left;
 }
 
 .vote .voteInput {
