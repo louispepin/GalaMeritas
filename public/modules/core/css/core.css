@@ -1,0 +1,44 @@
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+
+body {
+	background-image: url("../img/stripe.png");
+}
+
+section .container{
+	background-color: white;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	overflow: auto;
+	border-radius: 10px;
+}
+
+p, li {
+	font-size: 18px;
+}
+
+.jumbotron {
+	margin-top: 30px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-control {
+	max-width: 400px;
+}
+
+.btn {
+	margin-top: 15px;
+}
+

@@ -1,0 +1,121 @@
+<section data-ng-controller="SondageController" style="margin: 20px">
+
+    <h3>Notes relatives au sondage : </h3>
+
+    <ul>
+        <li>Vous ne pouvez voter que pour <i>vos</i> enseignants.</li>
+        <li>Si un nom manque dans une liste, vous pouvez l'écrire dans la boîte de texte à cet effet en
+            spécifiant le numéro de cours et de section.</li>
+        <li>Vous ne pouvez voter qu'une seule fois.</li>
+    </ul>
+
+    <p>Sur ce, merci et bon vote!</p>
+
+    <hr/>
+
+    <h3>Votre matricule: </h3>
+    <input type="text" ng-model="matricule" class="form-control">
+    <button class="btn btn-primary" ng-click="actions.submitId()">Soumettre</button>
+
+    <div ng-show="submitted">
+        <div>
+            <small>
+                Cela nous permettra de générer automatiquement la liste des professeurs, chargés et auxiliaires
+                qui vous ont enseigné cette année.
+            </small>
+        </div>
+
+        <div class="vote">
+
+            <hr/>
+
+            <!--
+            PROFESSEUR
+            -->
+            <h3 style="margin-top: 20px">Meilleur professeur et chargé d'enseignement</h3>
+            <div>
+                Votez pour le meilleur professeur ou chargé d'enseignement qui enseigne une de vos sections de cours.
+            </div>
+
+            <div class="voteInput">
+                <div class="form-group">
+                    <label>Nom du professeur</label>
+                    <select ng-model="vote.prof" class="form-control" ng-disabled="noProf"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nom du professeur s'il n'est pas dans la liste</label>
+                    <input type="text" ng-model="vote.prof" class="form-control" ng-disabled="noProf" placeholder="Entrer nom ici" />
+                </div>
+
+                <div class="form-group">
+                    <label>Je ne souhaite pas voter pour un professeur</label>
+                    <input type="checkbox" ng-model="noProf" class="checkbox-inline" />
+                </div>
+            </div>
+
+            <hr/>
+
+            <!--
+            CHARGE
+            -->
+            <h3 style="margin-top: 20px">Meilleur chargé de cours</h3>
+            <div>
+                Votez pour le meilleur chargé de cours qui enseigne une de vos sections de cours.
+            </div>
+
+            <div class="voteInput">
+                <div class="form-group">
+                    <label>Nom du chargé</label>
+                    <select ng-model="vote.charge" class="form-control" ng-disabled="noCharge"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nom du chargé s'il n'est pas dans la liste</label>
+                    <input type="text" ng-model="vote.charge" class="form-control" ng-disabled="noCharge" placeholder="Entrer nom ici" />
+                </div>
+
+                <div class="form-group">
+                    <label>Je ne souhaite pas voter pour un chargé de cours</label>
+                    <input type="checkbox" ng-model="noCharge" class="checkbox-inline" />
+                </div>
+            </div>
+
+            <hr/>
+
+            <!--
+            AUXILIAIRE
+            -->
+            <h3 style="margin-top: 20px">Meilleur auxiliaire d'enseignement (chargé de TD, TP ou répétiteur)</h3>
+            <div>
+                Votez pour le meilleur auxiliaire d'enseignement. L'auxiliaire d'enseignement peut-être un chargé
+                de travaux dirigés, un chargé de laboratoire ou un répétiteur.
+            </div>
+
+            <div class="voteInput">
+                <div class="forg-group">
+                    <label>Nom de l'auxiliaire</label>
+                    <select ng-model="vote.aux" class="form-control" ng-disabled="noAux"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nom de l'auxiliaire s'il n'est pas dans la liste</label>
+                    <input type="text" ng-model="vote.aux" class="form-control" ng-disabled="noAux" placeholder="Entrer nom ici" />
+                </div>
+
+                <div class="form-group">
+                    <label>Je ne souhaite pas voter pour un auxiliaire</label>
+                    <input type="checkbox" ng-model="noAux" class="checkbox-inline" />
+                </div>
+            </div>
+        </div>
+
+        <a class="btn btn-primary"
+                ng-click="actions.submitAll()"
+                ng-disabled="noAux && noCharge && noProf"
+                href="#!/merci">
+            Envoyer mes votes!
+        </a>
+    </div>
+
+</section>
