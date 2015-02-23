@@ -11,34 +11,71 @@
 	border-color: #78FA89;
 }
 
+html {
+	min-height: 100%;
+	position: relative;
+}
 body {
 	background-image: url("../img/stripe.png");
+	height: 100%;
 }
 
-section .container{
+section .container {
 	background-color: white;
-	margin-top: 50px;
-	margin-bottom: 50px;
 	overflow: auto;
-	border-radius: 10px;
+	height: 100%;
 }
 
-p, li {
+p {
 	font-size: 18px;
 }
 
-.jumbotron {
-	margin-top: 30px;
-	width: 70%;
+h2 {
+	font-size: 35px;
+}
+
+.content {
+	position: absolute;
+	height: 100%;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.banner {
+	margin-top: 15px;
 	margin-left: auto;
 	margin-right: auto;
+	overflow: hidden;
+	height: 275px;
+}
+
+.text {
+	margin-top: 50px;
+	height: 350px;
+	position: relative;
+}
+
+.goal {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+	text-align: right;
 }
 
 .form-control {
 	max-width: 400px;
 }
 
+.vote-group {
+	margin-top: -20px;
+	margin-bottom: -30px;
+}
 .btn {
 	margin-top: 15px;
 }
+
 

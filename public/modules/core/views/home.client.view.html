@@ -1,32 +1,42 @@
 <section data-ng-controller="HomeController" style="margin: 20px">
 
-	<div class="jumbotron text-center">
-		<div class="row">
-			<h1>GALA MÉRITAS <br> HIVER 2015</h1>
-		</div>
-
-		<div class="row" style="margin-top: 30px">
-			<p>
-				<a class="btn btn-primary btn-lg" href="#!/sondage">Voter</a>
-			</p>
-		</div>
+	<div class="banner jumbotron text-center">
+        <img src="modules/core/img/header.png" width="1000px">
+        <p>
+            <a class="btn btn-primary btn-lg" href="#!/sondage">Voter</a>
+        </p>
 	</div>
 
-    <h2>Bienvenue sur le site du sondage de la soirée méritas 2015!</h2>
+	<div class="text">
+        <h2>Bienvenue sur le site du sondage de la soirée méritas 2015!</h2>
 
-    <p>
-		<br/>
-        Cette année encore, l'AEP et l'AECSP joignent leur force pour offrir au corps professoral un moment
-        où leurs efforts seront reconnus. En effet, la réussite à l’École Polytechnique n’étant jamais acquise,
-        il est important de remercier ceux et celles qui nous aident à y parvenir, ou du moins qui rendent
-        le périple plus agréable! Il est donc primordial que ce vote soit pris le plus sérieusement possible.
-    </p>
+		<div class="col-md-6">
+            <p>
+                <br/>
+                Cette année encore, l'AEP et l'AECSP joignent leur force pour offrir au corps professoral un moment
+                où leurs efforts seront reconnus. En effet, la réussite à l’École Polytechnique n’étant jamais acquise,
+                il est important de remercier ceux et celles qui nous aident à y parvenir, ou du moins qui rendent
+                le périple plus agréable! Il est donc primordial que ce vote soit pris le plus sérieusement possible.
+            </p>
+        </div>
 
-	<div style="margin-top: 40px">
-		<p>Aidez nous à atteindre notre but! Il ne manque que <b>{{but - votes}}</b> votes!</p>
-        <progressbar class="progress-striped active" max="but" value="votes" type="danger" style="height: 40px">
-        </progressbar>
-		<p>{{votes}} / {{but}}</p>
+		<div class="goal col-md-6">
+			<p>
+				<br/>
+				Aidez nous à atteindre notre but! Il reste encore <b>{{but - votes}}</b> votes!
+			</p>
+            <progressbar class="progress-striped active" max="but" value="votes" type="danger" style="height: 40px">
+            </progressbar>
+            <p><b>{{votes}} / {{but}}</b></p>
+        </div>
+	</div>
+
+	<div class="footer">
+        <hr>
+        <a href="http://aep.polymtl.ca" title="AEP" target="_blank">Association des étudiants de Polytechnique (AEP)</a><br/>
+        <a href="http://www.etudiants.polymtl.ca/aecsp" title="AECSP" target="_blank">Association des étudiants des cycles supérieurs de Polytechnique (AECSP)</a><br/>
+        Pour tout problème ou commentaire, communiquez avec le<br />
+        responsable du sondage - <a href="mailto:meritas@aep.polymtl.ca">meritas@aep.polymtl.ca</a>
 	</div>
 
 </section>

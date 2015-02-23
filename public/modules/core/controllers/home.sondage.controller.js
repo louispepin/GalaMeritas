@@ -6,9 +6,9 @@ angular.module('core').controller('SondageController', ['$scope', 'Authenticatio
         $scope.authentication = Authentication;
         $scope.noAux = $scope.noCharge = $scope.noProf = $scope.submitted = false;
 
-        $scope.matricule = '';
 
         $scope.vote = {
+            matricule: '',
             prof: '',
             charge: '',
             aux: ''
@@ -16,12 +16,11 @@ angular.module('core').controller('SondageController', ['$scope', 'Authenticatio
 
         $scope.actions = {
             submitId: function () {
-                alert(angular.toJson($scope.matricule));
                 $scope.submitted = true;
             },
             submitAll: function() {
                 alert(angular.toJson($scope.vote));
             }
-        }
+        };
     }
 ]);

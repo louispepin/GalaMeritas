@@ -1,6 +1,6 @@
 <section data-ng-controller="SondageController" style="margin: 20px">
 
-    <h3>Notes relatives au sondage : </h3>
+    <p>Notes relatives au sondage : </p>
 
     <ul>
         <li>Vous ne pouvez voter que pour <i>vos</i> enseignants.</li>
@@ -14,7 +14,7 @@
     <hr/>
 
     <h3>Votre matricule: </h3>
-    <input type="text" ng-model="matricule" class="form-control">
+    <input type="text" ng-model="vote.matricule" class="form-control">
     <button class="btn btn-primary" ng-click="actions.submitId()">Soumettre</button>
 
     <div ng-show="submitted">
@@ -27,8 +27,6 @@
 
         <div class="vote">
 
-            <hr/>
-
             <!--
             PROFESSEUR
             -->
@@ -37,24 +35,24 @@
                 Votez pour le meilleur professeur ou chargé d'enseignement qui enseigne une de vos sections de cours.
             </div>
 
-            <div class="voteInput">
-                <div class="form-group">
-                    <label>Nom du professeur</label>
-                    <select ng-model="vote.prof" class="form-control" ng-disabled="noProf"></select>
-                </div>
+            <div class="jumbotron">
+                <div class="vote-group">
+                    <div class="form-group">
+                        <label>Nom du professeur</label>
+                        <select ng-model="vote.prof" class="form-control" ng-disabled="noProf"></select>
+                    </div>
 
-                <div class="form-group">
-                    <label>Nom du professeur s'il n'est pas dans la liste</label>
-                    <input type="text" ng-model="vote.prof" class="form-control" ng-disabled="noProf" placeholder="Entrer nom ici" />
-                </div>
+                    <div class="form-group">
+                        <label>Nom du professeur s'il n'est pas dans la liste</label>
+                        <input type="text" ng-model="vote.prof" class="form-control" ng-disabled="noProf" placeholder="Entrer nom ici" />
+                    </div>
 
-                <div class="form-group">
-                    <label>Je ne souhaite pas voter pour un professeur</label>
-                    <input type="checkbox" ng-model="noProf" class="checkbox-inline" />
+                    <div class="form-group">
+                        <label>Je ne souhaite pas voter pour un professeur</label>
+                        <input type="checkbox" ng-model="noProf" class="checkbox-inline" />
+                    </div>
                 </div>
             </div>
-
-            <hr/>
 
             <!--
             CHARGE
@@ -64,24 +62,24 @@
                 Votez pour le meilleur chargé de cours qui enseigne une de vos sections de cours.
             </div>
 
-            <div class="voteInput">
-                <div class="form-group">
-                    <label>Nom du chargé</label>
-                    <select ng-model="vote.charge" class="form-control" ng-disabled="noCharge"></select>
-                </div>
+            <div class="jumbotron">
+                <div class="vote-group">
+                    <div class="form-group">
+                        <label>Nom du chargé</label>
+                        <select ng-model="vote.charge" class="form-control" ng-disabled="noCharge"></select>
+                    </div>
 
-                <div class="form-group">
-                    <label>Nom du chargé s'il n'est pas dans la liste</label>
-                    <input type="text" ng-model="vote.charge" class="form-control" ng-disabled="noCharge" placeholder="Entrer nom ici" />
-                </div>
+                    <div class="form-group">
+                        <label>Nom du chargé s'il n'est pas dans la liste</label>
+                        <input type="text" ng-model="vote.charge" class="form-control" ng-disabled="noCharge" placeholder="Entrer nom ici" />
+                    </div>
 
-                <div class="form-group">
-                    <label>Je ne souhaite pas voter pour un chargé de cours</label>
-                    <input type="checkbox" ng-model="noCharge" class="checkbox-inline" />
+                    <div class="form-group">
+                        <label>Je ne souhaite pas voter pour un chargé de cours</label>
+                        <input type="checkbox" ng-model="noCharge" class="checkbox-inline" />
+                    </div>
                 </div>
             </div>
-
-            <hr/>
 
             <!--
             AUXILIAIRE
@@ -92,20 +90,22 @@
                 de travaux dirigés, un chargé de laboratoire ou un répétiteur.
             </div>
 
-            <div class="voteInput">
-                <div class="forg-group">
-                    <label>Nom de l'auxiliaire</label>
-                    <select ng-model="vote.aux" class="form-control" ng-disabled="noAux"></select>
-                </div>
+            <div class="jumbotron">
+                <div class="vote-group">
+                    <div class="forg-group">
+                        <label>Nom de l'auxiliaire</label>
+                        <select ng-model="vote.aux" class="form-control" ng-disabled="noAux"></select>
+                    </div>
 
-                <div class="form-group">
-                    <label>Nom de l'auxiliaire s'il n'est pas dans la liste</label>
-                    <input type="text" ng-model="vote.aux" class="form-control" ng-disabled="noAux" placeholder="Entrer nom ici" />
-                </div>
+                    <div class="form-group">
+                        <label>Nom de l'auxiliaire s'il n'est pas dans la liste</label>
+                        <input type="text" ng-model="vote.aux" class="form-control" ng-disabled="noAux" placeholder="Entrer nom ici" />
+                    </div>
 
-                <div class="form-group">
-                    <label>Je ne souhaite pas voter pour un auxiliaire</label>
-                    <input type="checkbox" ng-model="noAux" class="checkbox-inline" />
+                    <div class="form-group">
+                        <label>Je ne souhaite pas voter pour un auxiliaire</label>
+                        <input type="checkbox" ng-model="noAux" class="checkbox-inline" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,4 +118,13 @@
         </a>
     </div>
 
+    <div class="footer">
+        <hr>
+        <a href="http://aep.polymtl.ca" title="AEP" target="_blank">Association des étudiants de Polytechnique (AEP)</a><br/>
+        <a href="http://www.etudiants.polymtl.ca/aecsp" title="AECSP" target="_blank">Association des étudiants des cycles supérieurs de Polytechnique (AECSP)</a><br/>
+        Pour tout problème ou commentaire, communiquez avec le<br />
+        responsable du sondage - <a href="mailto:meritas@aep.polymtl.ca">meritas@aep.polymtl.ca</a>
+    </div>
+
+</section>
 </section>
