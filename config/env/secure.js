@@ -2,7 +2,7 @@
 
 module.exports = {
 	port: 443,
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://localhost/vote',
+	db: 'mongodb://admin:rockyourmeritas@ds029107.mongolab.com:29107/galameritas_2015',
 	assets: {
 		lib: {
 			css: [

@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/vote-test',
+	db: 'mongodb://admin:rockyourmeritas@ds029107.mongolab.com:29107/galameritas_2015',
 	port: 3001,
 	app: {
 		title: 'Vote - Test Environment'
