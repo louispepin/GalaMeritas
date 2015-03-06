@@ -85,7 +85,9 @@
                 <div class="vote-group">
                     <div class="form-group">
                         <label>Nom du professeur</label>
-                        <select ng-model="voteAep.prof" class="form-control" ng-disabled="noProf"></select>
+                        <select ng-model="voteAep.prof" ng-options="p.Name for p in data.profs | orderBy:'Name'" ng-disabled="noProf" class="form-control">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -112,7 +114,9 @@
                 <div class="vote-group">
                     <div class="form-group">
                         <label>Nom du chargé</label>
-                        <select ng-model="voteAep.charge" class="form-control" ng-disabled="noCharge"></select>
+                        <select ng-model="voteAep.charge" ng-options="c.Name for c in data.charges | orderBy:'Name'" class="form-control" ng-disabled="noCharge">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -140,7 +144,9 @@
                 <div class="vote-group">
                     <div class="forg-group">
                         <label>Nom de l'auxiliaire</label>
-                        <select ng-model="voteAep.aux" class="form-control" ng-disabled="noAux"></select>
+                        <select ng-model="voteAep.aux" ng-options="a.Name for a in data.aux | orderBy:'Name'" class="form-control" ng-disabled="noAux">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -167,7 +173,9 @@
                 <div class="vote-group">
                     <div class="forg-group">
                         <label>Nom</label>
-                        <select ng-model="voteAep.ssh" class="form-control" ng-disabled="noSSH"></select>
+                        <select ng-model="voteAep.ssh" ng-options="s.Name for s in data.ssh | orderBy:'Name'" class="form-control" ng-disabled="noSSH">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -194,7 +202,9 @@
                 <div class="vote-group">
                     <div class="forg-group">
                         <label>Nom</label>
-                        <select ng-model="voteAep.mth" class="form-control" ng-disabled="noMTH"></select>
+                        <select ng-model="voteAep.mth" ng-options="m.Name for m in data.mth | orderBy:'Name'" class="form-control" ng-disabled="noMTH">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
