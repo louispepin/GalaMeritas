@@ -1,9 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('SondageController', ['$scope', '$http', 'Authentication',
-    function($scope, $http, Authentication) {
-        $scope.authentication = Authentication;
+angular.module('core').controller('SondageController', ['$scope', '$http',
+    function($scope, $http) {
 
         $scope.matricule = '';
         $scope.type = '';

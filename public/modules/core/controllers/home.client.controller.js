@@ -1,10 +1,8 @@
 'use strict';
 
 
-angular.module('core').controller('HomeController', ['$scope', '$http', 'Authentication',
-	function($scope, $http, Authentication) {
-		$scope.authentication = Authentication;
-
+angular.module('core').controller('HomeController', ['$scope', '$http',
+	function($scope, $http) {
 		$scope.votes = 0;
 		$scope.but = 750;
 
