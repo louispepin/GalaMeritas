@@ -48,20 +48,22 @@
                 <div class="vote-group">
                     <div class="form-group">
                         <label>Nom</label>
-                        <select ng-model="votePrepa" class="form-control" ng-disabled="noProf"></select>
+                        <select ng-model="votePrepa.nom" ng-options="p.Sigle + ' - ' + p.Name for p in dataPrepa | orderBy:'Sigle' | unique:'Name'" ng-disabled="votePrepa.nomCustom" class="form-control">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="votePrepa" class="form-control" placeholder="Entrer nom ici" />
+                        <input type="text" ng-model="votePrepa.nomCustom" class="form-control" ng-disabled="votePrepa.nom" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
         </div>
 
         <a class="btn btn-primary"
-           ng-click="actions.submitAll()"
-           ng-disabled="!votePrepa"
+           ng-click="actions.submitVote()"
+           ng-disabled="!votePrepa.nom && !votePrepa.nomCustom"
            href="#!/merci">
             Envoyer mes votes!
         </a>
@@ -85,19 +87,14 @@
                 <div class="vote-group">
                     <div class="form-group">
                         <label>Nom du professeur</label>
-                        <select ng-model="voteAep.prof" ng-options="p.Name for p in data.profs | orderBy:'Name'" ng-disabled="noProf" class="form-control">
+                        <select ng-model="voteAep.prof" ng-options="p.Sigle + ' - ' + p.Name for p in dataAep.profs | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.profCustom" class="form-control">
                             <option value="">Votre choix...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom du professeur s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.prof" class="form-control" ng-disabled="noProf" placeholder="Entrer nom ici" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Je ne souhaite pas voter pour un professeur</label>
-                        <input type="checkbox" ng-model="noProf" class="checkbox-inline" />
+                        <input type="text" ng-model="voteAep.profCustom" class="form-control" ng-disabled="voteAep.prof" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
@@ -114,19 +111,14 @@
                 <div class="vote-group">
                     <div class="form-group">
                         <label>Nom du chargé</label>
-                        <select ng-model="voteAep.charge" ng-options="c.Name for c in data.charges | orderBy:'Name'" class="form-control" ng-disabled="noCharge">
+                        <select ng-model="voteAep.charge" ng-options="c.Sigle + ' - ' + c.Name for c in dataAep.charges | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.chargeCustom" class="form-control">
                             <option value="">Votre choix...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom du chargé s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.charge" class="form-control" ng-disabled="noCharge" placeholder="Entrer nom ici" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Je ne souhaite pas voter pour un chargé de cours</label>
-                        <input type="checkbox" ng-model="noCharge" class="checkbox-inline" />
+                        <input type="text" ng-model="voteAep.chargeCustom" class="form-control" ng-disabled="voteAep.charge" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
@@ -144,19 +136,14 @@
                 <div class="vote-group">
                     <div class="forg-group">
                         <label>Nom de l'auxiliaire</label>
-                        <select ng-model="voteAep.aux" ng-options="a.Name for a in data.aux | orderBy:'Name'" class="form-control" ng-disabled="noAux">
+                        <select ng-model="voteAep.aux" ng-options="a.Sigle + ' - ' + a.Name for a in dataAep.aux | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.auxCustom" class="form-control">
                             <option value="">Votre choix...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom de l'auxiliaire s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.aux" class="form-control" ng-disabled="noAux" placeholder="Entrer nom ici" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Je ne souhaite pas voter pour un auxiliaire</label>
-                        <input type="checkbox" ng-model="noAux" class="checkbox-inline" />
+                        <input type="text" ng-model="voteAep.auxCustom" class="form-control" ng-disabled="voteAep.aux" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
@@ -173,19 +160,14 @@
                 <div class="vote-group">
                     <div class="forg-group">
                         <label>Nom</label>
-                        <select ng-model="voteAep.ssh" ng-options="s.Name for s in data.ssh | orderBy:'Name'" class="form-control" ng-disabled="noSSH">
+                        <select ng-model="voteAep.ssh" ng-options="s.Sigle + ' - ' + s.Name for s in dataAep.ssh | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.sshCustom" class="form-control">
                             <option value="">Votre choix...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.ssh" class="form-control" ng-disabled="noSSH" placeholder="Entrer nom ici" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Je ne souhaite pas voter pour un auxiliaire</label>
-                        <input type="checkbox" ng-model="noSSH" class="checkbox-inline" />
+                        <input type="text" ng-model="voteAep.sshCustom" class="form-control" ng-disabled="voteAep.ssh" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
@@ -202,26 +184,22 @@
                 <div class="vote-group">
                     <div class="forg-group">
                         <label>Nom</label>
-                        <select ng-model="voteAep.mth" ng-options="m.Name for m in data.mth | orderBy:'Name'" class="form-control" ng-disabled="noMTH">
+                        <select ng-model="voteAep.mth" ng-options="m.Sigle + ' - ' + m.Name for m in dataAep.mth | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.mthCustom" class="form-control">
                             <option value="">Votre choix...</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.mth" class="form-control" ng-disabled="noMTH" placeholder="Entrer nom ici" />
-                    </div>
-
-                    <div class="form-group">
-                        <label>Je ne souhaite pas voter pour un auxiliaire</label>
-                        <input type="checkbox" ng-model="noMTH" class="checkbox-inline" />
+                        <input type="text" ng-model="voteAep.mthCustom" class="form-control" ng-disabled="voteAep.mth" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
 
             <a class="btn btn-primary"
-                    ng-click="actions.submitAll()"
-                    ng-disabled="noAux && noCharge && noProf"
+                    ng-click="actions.submitVote()"
+                    ng-disabled="!voteAep.prof && !voteAep.charge && !voteAep.aux && !voteAep.ssh && !voteAep.mth &&
+                                    !voteAep.profCustom && !voteAep.chargeCustom && !voteAep.auxCustom && !voteAep.sshCustom && !voteAep.mthCustom";
                     href="#!/merci">
                 Envoyer mes votes!
             </a>
@@ -245,19 +223,21 @@
                 <div class="vote-group">
                     <div class="form-group">
                         <label>Nom</label>
-                        <select ng-model="voteAecsp" class="form-control"></select>
+                        <select ng-model="voteAecsp.nom" ng-options="p.Sigle + ' - ' + p.Name for p in dataAecsp | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAecsp.nomCustom" class="form-control">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
                         <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAecsp" class="form-control" placeholder="Entrer nom ici" />
+                        <input type="text" ng-model="voteAecsp.nomCustom" class="form-control" ng-disabled="voteAecsp.nom" placeholder="Sigle du cours - Nom" />
                     </div>
                 </div>
             </div>
         </div>
 
         <a class="btn btn-primary"
-           ng-click="actions.submitAll()"
+           ng-click="actions.submitVote()"
            ng-disabled="!voteAecsp"
            href="#!/merci">
             Envoyer mes votes!

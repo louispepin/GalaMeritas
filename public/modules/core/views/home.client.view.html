@@ -11,23 +11,31 @@
         <h2>Bienvenue sur le site du sondage de la soirée méritas 2015!</h2>
 
 		<div class="col-md-6">
-            <p>
-                <br/>
-                Cette année encore, l'AEP et l'AECSP joignent leur force pour offrir au corps professoral un moment
-                où leurs efforts seront reconnus. En effet, la réussite à l’École Polytechnique n’étant jamais acquise,
-                il est important de remercier ceux et celles qui nous aident à y parvenir, ou du moins qui rendent
-                le périple plus agréable! Il est donc primordial que ce vote soit pris le plus sérieusement possible.
-            </p>
+            <div>
+                <p>
+                    <br>
+                    Cette année encore, l'AEP et l'AECSP joignent leur force pour offrir au corps professoral un moment
+                    où leurs efforts seront reconnus. En effet, la réussite à l’École Polytechnique n’étant jamais acquise,
+                    il est important de remercier ceux et celles qui nous aident à y parvenir, ou du moins qui rendent
+                    le périple plus agréable! Il est donc primordial que ce vote soit pris le plus sérieusement possible.
+                </p>
+            </div>
         </div>
 
 		<div class="goal col-md-6">
-			<p>
-				<br/>
-				Aidez nous à atteindre notre but! Il reste encore <b>{{but - votes}}</b> votes!
-			</p>
-            <progressbar class="progress-striped active" max="but" value="votes" type="danger" style="height: 40px">
-            </progressbar>
-            <p><b>{{votes}} / {{but}}</b></p>
+            <div style="padding-top: 15px;">
+                <p>
+                    <div ng-show="votes < but">
+                        <p>Aidez nous à atteindre notre but! Il reste encore <b>{{but - votes}}</b> votes!</p>
+                    </div>
+                    <div ng-show="votes >= but">
+                        <p>Le but a été atteint! Merci!!</p>
+                    </div>
+                </p>
+                <progressbar class="progress-striped active" max="but" value="votes" type="danger" style="height: 40px">
+                </progressbar>
+                <p><b>Votes: {{votes}} / {{but}}</b></p>
+            </div>
         </div>
 	</div>
 
