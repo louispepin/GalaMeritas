@@ -72,7 +72,7 @@ angular.module('core').controller('SondageController', ['$scope', '$http', 'Auth
                      .success(function(data) {
                          if (data === 'Found') {
                              $scope.matriculeValide = false;
-                             alert("Merci de ne voter qu'une seule fois!");
+                             alert('Merci de ne voter qu\'une seule fois!');
                          }
                      });
 

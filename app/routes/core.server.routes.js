@@ -304,6 +304,6 @@ module.exports = function(app) {
             if (obj) {
                 res.send('Found');
             }
-        })
+        });
     });
 };
