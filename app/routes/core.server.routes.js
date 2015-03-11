@@ -165,30 +165,38 @@ module.exports = function(app) {
      */
     app.post('/votePrepa', function(req, res) {
 
-        var model;
-        if (req.body.nomCustom) {
-            model = new vote_prepa_custom({
-                Matricule: req.body.matricule,
-                NomCustom: req.body.nomCustom
-            });
+        vote.findOne({'Matricule': req.body.matricule}, function(err, obj) {
+            if (obj) {
+                res.send("duplicate");
+                res.end();
+            }
+            else {
+                var model;
+                if (req.body.nomCustom) {
+                    model = new vote_prepa_custom({
+                        Matricule: req.body.matricule,
+                        NomCustom: req.body.nomCustom
+                    });
 
-            model.save();
-        }
-        else {
-            model = new vote_prepa({
-                Matricule: req.body.matricule,
-                Nom: req.body.nom,
-                Sigle: req.body.sigle
-            });
+                    model.save();
+                }
+                else {
+                    model = new vote_prepa({
+                        Matricule: req.body.matricule,
+                        Nom: req.body.nom,
+                        Sigle: req.body.sigle
+                    });
 
-            model.save();
-        }
+                    model.save();
+                }
 
-        var matricule = new vote({
-            Matricule: req.body.matricule
+                var matricule = new vote({
+                    Matricule: req.body.matricule
+                });
+
+                matricule.save();
+            }
         });
-
-        matricule.save();
     });
 
 
@@ -197,33 +205,41 @@ module.exports = function(app) {
      */
     app.post('/voteAep', function(req, res) {
 
-        var model;
-        model = vote_aep({
-            Matricule: req.body.matricule,
-            Prof: req.body.prof,
-            ProfSigle: req.body.profSigle,
-            ProfCustom: req.body.profCustom,
-            Charge: req.body.charge,
-            ChargeSigle: req.body.chargeSigle,
-            ChargeCustom: req.body.chargeCustom,
-            Aux: req.body.aux,
-            AuxSigle: req.body.auxSigle,
-            AuxCustom: req.body.auxCustom,
-            Ssh: req.body.ssh,
-            SshSigle: req.body.sshSigle,
-            SshCustom: req.body.sshCustom,
-            Mth: req.body.mth,
-            MthSigle: req.body.mthSigle,
-            MthCustom: req.body.mthCustom
+        vote.findOne({'Matricule': req.body.matricule}, function(err, obj) {
+            if (obj) {
+                res.send("duplicate");
+                res.end();
+            }
+            else {
+                var model;
+                model = vote_aep({
+                    Matricule: req.body.matricule,
+                    Prof: req.body.prof,
+                    ProfSigle: req.body.profSigle,
+                    ProfCustom: req.body.profCustom,
+                    Charge: req.body.charge,
+                    ChargeSigle: req.body.chargeSigle,
+                    ChargeCustom: req.body.chargeCustom,
+                    Aux: req.body.aux,
+                    AuxSigle: req.body.auxSigle,
+                    AuxCustom: req.body.auxCustom,
+                    Ssh: req.body.ssh,
+                    SshSigle: req.body.sshSigle,
+                    SshCustom: req.body.sshCustom,
+                    Mth: req.body.mth,
+                    MthSigle: req.body.mthSigle,
+                    MthCustom: req.body.mthCustom
+                });
+
+                model.save();
+
+                var matricule = new vote({
+                    Matricule: req.body.matricule
+                });
+
+                matricule.save();
+            }
         });
-
-        model.save();
-
-        var matricule = new vote({
-            Matricule: req.body.matricule
-        });
-
-        matricule.save();
     });
 
 
@@ -232,30 +248,39 @@ module.exports = function(app) {
      */
     app.post('/voteAecsp', function(req, res) {
 
-        var model;
-        if (req.body.nomCustom) {
-            model = new vote_aecsp_custom({
-                Matricule: req.body.matricule,
-                NomCustom: req.body.nomCustom
-            });
+        vote.findOne({'Matricule': req.body.matricule}, function(err, obj){
+            if (obj) {
+                res.send("duplicate");
+                res.end();
+            }
+            else {
 
-            model.save();
-        }
-        else {
-            model = new vote_aecsp({
-                Matricule: req.body.matricule,
-                Nom: req.body.nom,
-                Sigle: req.body.sigle
-            });
+                var model;
+                if (req.body.nomCustom) {
+                    model = new vote_aecsp_custom({
+                        Matricule: req.body.matricule,
+                        NomCustom: req.body.nomCustom
+                    });
 
-            model.save();
-        }
+                    model.save();
+                }
+                else {
+                    model = new vote_aecsp({
+                        Matricule: req.body.matricule,
+                        Nom: req.body.nom,
+                        Sigle: req.body.sigle
+                    });
 
-        var matricule = new vote({
-            Matricule: req.body.matricule
+                    model.save();
+                }
+
+                var matricule = new vote({
+                    Matricule: req.body.matricule
+                });
+
+                matricule.save();
+            }
         });
-
-        matricule.save();
     });
 
 

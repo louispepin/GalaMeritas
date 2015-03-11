@@ -71,7 +71,6 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                      .success(function(data) {
                          if (data === 'Found') {
                              $scope.matriculeValide = false;
-                             alert('Merci de ne voter qu\'une seule fois!');
                          }
                      });
 
@@ -147,7 +146,10 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                         nomCustom: $scope.votePrepa.nomCustom
                     };
 
-                    $http.post($scope.serverPath + '/votePrepa', angular.toJson(vote));
+                    $http.post($scope.serverPath + '/votePrepa', angular.toJson(vote))
+                        .success(function() {
+                            vote = null;
+                        });
                 }
                 else if ($scope.type === 'aep') {
 
@@ -170,7 +172,10 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                         mthCustom: $scope.voteAep.mthCustom
                     };
 
-                    $http.post($scope.serverPath + '/voteAep', angular.toJson(vote));
+                    $http.post($scope.serverPath + '/voteAep', angular.toJson(vote))
+                        .success(function() {
+                            vote = null;
+                        });
                 }
                 else if ($scope.type === 'aecsp') {
 
@@ -181,7 +186,10 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                         nomCustom: $scope.voteAecsp.nomCustom
                     };
 
-                    $http.post($scope.serverPath + '/voteAecsp', angular.toJson(vote));
+                    $http.post($scope.serverPath + '/voteAecsp', angular.toJson(vote))
+                        .success(function() {
+                            vote = null;
+                        });
                 }
             }
         };
