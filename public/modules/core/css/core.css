@@ -78,4 +78,8 @@ h2 {
 	margin-top: 15px;
 }
 
+.welcome {
+    min-width: 1000px;
+    min-height: 800px;
+}
 
