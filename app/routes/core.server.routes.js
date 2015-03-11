@@ -263,28 +263,22 @@ module.exports = function(app) {
      * GET NB VOTES
      */
     app.post('/getNbVotes', function(req, res) {
-        var nb = 0;
+        vote.find(null, function(err, found) {
 
-        vote_prepa.count(null, function(err, count) {
-            nb += count;
+            var unique = [];
+            for (var i=0; i<found.length; i++) {
+                var duplicate = false;
 
-            vote_prepa_custom.count(null, function(err, count) {
-                nb += count;
+                for (var j=0; j<unique.length; j++) {
+                    if (found[i].Matricule === unique[j].Matricule)
+                        duplicate = true;
+                }
 
-                vote_aep.count(null, function(err, count) {
-                    nb += count;
+                if (!duplicate)
+                    unique.push(found[i]);
+            }
 
-                    vote_aecsp.count(null, function(err, count) {
-                        nb += count;
-
-                        vote_aecsp_custom.count(null, function(err, count) {
-                            nb += count;
-
-                            res.send({'votes': nb});
-                        });
-                    });
-                });
-            });
+           res.send({"votes": unique.length});
         });
     });
 

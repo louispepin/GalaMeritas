@@ -12,7 +12,9 @@ var mongoose = require('mongoose'),
 var vote_prepa_schema = new Schema(
     {
         Matricule: {
-            type: Number
+            type: Number,
+            unique: true,
+            index: true
         },
         Nom: {
             type: String
