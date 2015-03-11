@@ -1,4 +1,4 @@
-<section data-ng-controller="SondageController" style="margin: 20px">
+<section style="margin: 20px">
 
     <p>Notes relatives au sondage : </p>
 
@@ -64,7 +64,7 @@
         <a class="btn btn-primary"
            ng-click="actions.submitVote()"
            ng-disabled="!votePrepa.nom && !votePrepa.nomCustom"
-           href="#!/merci">
+           href="#!/merci/">
             Envoyer mes votes!
         </a>
     </div>
@@ -200,7 +200,7 @@
                     ng-click="actions.submitVote()"
                     ng-disabled="!voteAep.prof && !voteAep.charge && !voteAep.aux && !voteAep.ssh && !voteAep.mth &&
                                     !voteAep.profCustom && !voteAep.chargeCustom && !voteAep.auxCustom && !voteAep.sshCustom && !voteAep.mthCustom";
-                    href="#!/merci">
+                    href="#!/merci/">
                 Envoyer mes votes!
             </a>
         </div>
@@ -239,7 +239,7 @@
         <a class="btn btn-primary"
            ng-click="actions.submitVote()"
            ng-disabled="!voteAecsp"
-           href="#!/merci">
+           href="#!/merci/">
             Envoyer mes votes!
         </a>
     </div>

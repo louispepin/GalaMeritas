@@ -267,23 +267,18 @@ module.exports = function(app) {
 
         vote_prepa.count(null, function(err, count) {
             nb += count;
-            console.log(nb);
 
             vote_prepa_custom.count(null, function(err, count) {
                 nb += count;
-                console.log(nb);
 
                 vote_aep.count(null, function(err, count) {
                     nb += count;
-                    console.log(nb);
 
                     vote_aecsp.count(null, function(err, count) {
                         nb += count;
-                        console.log(nb);
 
                         vote_aecsp_custom.count(null, function(err, count) {
                             nb += count;
-                            console.log(nb);
 
                             res.send({'votes': nb});
                         });
