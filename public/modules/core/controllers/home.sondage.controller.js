@@ -67,12 +67,12 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                 $scope.dataPrepa = [];
                 $scope.dataAecsp = [];
 
-                 $http.post($scope.serverPath + '/checkId', {mat: $scope.matricule})
-                     .success(function(data) {
-                         if (data === 'Found') {
-                             $scope.matriculeValide = false;
-                         }
-                     });
+                $http.post($scope.serverPath + '/checkId', {mat: $scope.matricule})
+                    .success(function(data) {
+                        if (data === 'Found') {
+                            //$scope.matriculeValide = false;
+                        }
+                    });
 
                 // 2014
                 $http.post($scope.serverPath + '/getData2014', {mat: $scope.matricule})
