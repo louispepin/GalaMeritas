@@ -34,6 +34,11 @@ h2 {
 	font-size: 35px;
 }
 
+button {
+	text-align: left;
+	font-size: 12px;
+}
+
 .content {
 	position: absolute;
 	height: 100%;
@@ -64,6 +69,7 @@ h2 {
 
 .footer {
 	text-align: right;
+	font-size: 11px;
 }
 
 .form-control {
@@ -83,3 +89,6 @@ h2 {
     min-height: 800px;
 }
 
+.selected {
+	background-color: #ccc;
+}

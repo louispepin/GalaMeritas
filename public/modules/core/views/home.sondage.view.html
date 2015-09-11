@@ -1,43 +1,97 @@
-<section style="margin: 20px">
+<div style="margin: 20px">
 
-    <p>Notes relatives au sondage : </p>
+    <div style="width: 75%">
+        <p>Notes relatives au sondage : </p>
 
-    <ul>
-        <li>Vous ne pouvez voter que pour <i>vos</i> enseignants.</li>
-        <li>Si un nom manque dans une liste, vous pouvez l'écrire dans la boîte de texte à cet effet en
-            spécifiant le numéro de cours et de section.</li>
-        <li>Vous ne pouvez voter qu'une seule fois.</li>
-    </ul>
+        <ul>
+            <li>Vous ne pouvez voter que pour vos enseignants.</li>
+            <li>Si le nom que vous cherchez est manquant, vous pouvez l'écrire dans la boîte de texte
+                prévue &agrave; cet effet en spécifiant le sigle du cours en question.</li>
+            <li>Vous ne pouvez voter qu'une seule fois.</li>
+        </ul>
 
-    <p>Sur ce, merci et bon vote!</p>
+        Sur ce, bon vote!
+    </div>
 
     <hr/>
 
-    <h3>Votre matricule: </h3>
-    <div class="input-group">
-        <input type="text" ng-model="matricule" class="form-control">
-        <select id="type" ng-model="typeCheck" class="form-control">
-            <option value="">Vous êtes étudiant...</option>
-            <option value="prepa">En année préparatoire</option>
-            <option value="aep">Au baccalauréat</option>
-            <option value="aecsp">Aux cycles supérieurs</option>
-        </select>
+    <p>Votre matricule: </p>
+    <input type="text" ng-model="user.matricule" class="form-control">
+    <br/>
+    <div>
+        Vous êtes étudiant...
+        <div ng-if="user.type == 'prepa'">
+            <button type="button"
+                    ng-click="user.type = 'prepa'"
+                    class="form-control"
+                    style="text-align: left; background-color: #ccc; font-size: 12px">
+               En année préparatoire <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div ng-if="user.type != 'prepa'">
+            <button type="button"
+                    ng-click="user.type = 'prepa'"
+                    class="form-control"
+                    style="text-align: left; font-size: 12px">
+                En année préparatoire
+            </button>
+        </div>
+
+        <div ng-if="user.type == 'aep'">
+            <button type="button"
+                    ng-click="user.type = 'aep'"
+                    class="form-control"
+                    style="text-align: left; background-color: #ccc; font-size: 12px">
+                Au baccalauréat <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div ng-if="user.type != 'aep'">
+            <button type="button"
+                    ng-click="user.type = 'aep'"
+                    class="form-control"
+                    style="text-align: left; font-size: 12px">
+                Au baccalauréat
+            </button>
+        </div>
+
+        <div ng-if="user.type == 'aecsp'">
+            <button type="button"
+                    ng-click="user.type = 'aecsp'"
+                    class="form-control"
+                    style="text-align: left; background-color: #ccc; font-size: 12px">
+                Aux cycles supérieurs <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div ng-if="user.type != 'aecsp'">
+            <button type="button"
+                    ng-click="user.type = 'aecsp'"
+                    class="form-control"
+                    style="text-align: left; font-size: 12px">
+                Aux cycles supérieurs
+            </button>
+        </div>
     </div>
+
+    <br/>
+
     <div>
         <small>
             Cela nous permettra de générer automatiquement la liste des professeurs, chargés et auxiliaires
             qui vous ont enseigné cette année.
         </small>
     </div>
-    <button class="btn btn-primary" ng-disabled="vote.matricule == '' || typeCheck == ''" ng-click="actions.submitId()">Soumettre</button>
+    <button class="btn btn-primary" ng-disabled="user.matricule == '' || user.type == ''" ng-click="actions.submitId()">Soumettre</button>
     <div ng-show="!matriculeValide" style="color: red">Le matricule entré est invalide!</div>
 
     <!--
     PREPA
     -->
-    <div ng-show="submitted && matriculeValide && type == 'prepa'">
+    <div ng-show="submitted && matriculeValide && user.type == 'prepa'">
         <div class="vote">
-            <h3 style="margin-top: 20px">Meilleur professeur, chargé ou auxiliaire</h3>
+            <p style="margin-top: 20px">Meilleur professeur, chargé ou auxiliaire</p>
             <div>
                 Votez pour le meilleur professeur ou chargé d'enseignement qui enseigne une de vos sections de cours
                 en année préparatoire. Les cours d'année préparatoire sont les cours dont le chiffre débute par un 0,
@@ -45,18 +99,29 @@
             </div>
 
             <div class="jumbotron">
-                <div class="vote-group">
-                    <div class="form-group">
-                        <label>Nom</label>
-                        <select ng-model="votePrepa.nom" ng-options="p.Sigle + ' - ' + p.Name for p in dataPrepa | orderBy:'Sigle' | unique:'Name'" ng-disabled="votePrepa.nomCustom" class="form-control">
-                            <option value="">Votre choix...</option>
-                        </select>
+                <div class="grid container" style="background-color: rgba(255, 255, 255, 0)">
+                    <div class="row">
+                        <p>Nom</p>
                     </div>
+                    <div class="form-group">
+                        <div ng-repeat="p in dataPrepa" class="col-md-6">
+                            <div ng-click="actions.selectPrepa(p)">
+                                <button type="button"
+                                        class="form-control"
+                                        ng-class="{selected: p.Selected == true}"
+                                        style="font-size: 12px">
+                                     {{p.Sigle}} - {{p.Name}} <span ng-if="p.Selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="form-group">
-                        <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="votePrepa.nomCustom" class="form-control" ng-disabled="votePrepa.nom" placeholder="Sigle du cours - Nom" />
-                    </div>
+                <div class="row" style="margin-top: 40px">
+                    <p>Nom s'il n'est pas dans la liste</p>
+                </div>
+                <div class="row">
+                    <input type="text" ng-model="votePrepa.nomCustom" class="form-control" ng-disabled="votePrepa.nom" placeholder="Sigle du cours - Nom" />
                 </div>
             </div>
         </div>
@@ -72,13 +137,13 @@
     <!--
     AEP
     -->
-    <div ng-show="submitted && matriculeValide && type == 'aep'">
+    <div ng-show="submitted && matriculeValide && user.type == 'aep'">
         <div class="vote">
 
             <!--
             PROFESSEUR
             -->
-            <h3 style="margin-top: 20px">Meilleur professeur et chargé d'enseignement</h3>
+            <p style="margin-top: 20px">Meilleur professeur et chargé d'enseignement</p>
             <div>
                 Votez pour le meilleur professeur ou chargé d'enseignement qui enseigne une de vos sections de cours.
             </div>
@@ -102,7 +167,7 @@
             <!--
             CHARGE
             -->
-            <h3 style="margin-top: 20px">Meilleur chargé de cours</h3>
+            <p style="margin-top: 20px">Meilleur chargé de cours</p>
             <div>
                 Votez pour le meilleur chargé de cours qui enseigne une de vos sections de cours.
             </div>
@@ -126,7 +191,7 @@
             <!--
             AUXILIAIRE
             -->
-            <h3 style="margin-top: 20px">Meilleur auxiliaire d'enseignement (chargé de TD, TP ou répétiteur)</h3>
+            <p style="margin-top: 20px">Meilleur auxiliaire d'enseignement (chargé de TD, TP ou répétiteur)</p>
             <div>
                 Votez pour le meilleur auxiliaire d'enseignement. L'auxiliaire d'enseignement peut-être un chargé
                 de travaux dirigés, un chargé de laboratoire ou un répétiteur.
@@ -151,7 +216,7 @@
             <!--
             SSH
             -->
-            <h3 style="margin-top: 20px">Meilleur chargé ou enseignant pour les cours SSH</h3>
+            <p style="margin-top: 20px">Meilleur chargé ou enseignant pour les cours SSH</p>
             <div>
                 Votez pour tout enseignant, chargé ou auxiliaire pour vos cours SSH.
             </div>
@@ -175,7 +240,7 @@
             <!--
             MTH
             -->
-            <h3 style="margin-top: 20px">Meilleur chargé ou enseignant pour les cours MTH</h3>
+            <p style="margin-top: 20px">Meilleur chargé ou enseignant pour les cours MTH</p>
             <div>
                 Votez pour tout enseignant, chargé ou auxiliaire pour vos cours MTH.
             </div>
@@ -209,9 +274,9 @@
     <!--
     AECSP
     -->
-    <div ng-show="submitted && matriculeValide && type == 'aecsp'">
+    <div ng-show="submitted && matriculeValide && user.type == 'aecsp'">
         <div class="vote">
-            <h3 style="margin-top: 20px">Meilleur professeur, chargé ou auxiliaire</h3>
+            <p style="margin-top: 20px">Meilleur professeur, chargé ou auxiliaire</p>
             <div>
                 Votez pour le meilleur professeur ou chargé d'enseignement qui enseigne une de vos sections de cours
                 aux cycles supérieurs. Si vous êtes étudiant au baccalauréat mais que vous suivez des cours donnés
@@ -252,4 +317,4 @@
         responsable du sondage - <a href="mailto:meritas@aep.polymtl.ca">meritas@aep.polymtl.ca</a>
     </div>
 
-</section>
+</div>

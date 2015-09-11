@@ -4,9 +4,9 @@
 angular.module('core').controller('SondageController', ['$scope', '$http',
     function($scope, $http) {
 
-        $scope.matricule = '';
-        $scope.type = '';
-        $scope.typeCheck = '';
+        $scope.user = {};
+        $scope.user.matricule = '';
+        $scope.user.type = '';
 
         $scope.submitted = false;
         $scope.matriculeValide = true;
@@ -49,12 +49,9 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                 $scope.invalid2014 = false;
                 $scope.invalid2015 = false;
 
-                $scope.matriculeValide = !isNaN($scope.matricule);
+                //$scope.matriculeValide = !isNaN($scope.user.matricule);
                 if (!$scope.matriculeValide)
                     return;
-
-                $scope.type = document.getElementById('type').value;
-
 
                 $scope.dataAep = {
                     profs: [],
@@ -67,7 +64,7 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                 $scope.dataPrepa = [];
                 $scope.dataAecsp = [];
 
-                $http.post($scope.serverPath + '/checkId', {mat: $scope.matricule})
+                $http.post($scope.serverPath + '/checkId', {mat: $scope.user.matricule})
                     .success(function(data) {
                         if (data === 'Found') {
                             //$scope.matriculeValide = false;
@@ -75,11 +72,17 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                     });
 
                 // 2014
-                $http.post($scope.serverPath + '/getData2014', {mat: $scope.matricule})
+                $http.post($scope.serverPath + '/getData2014', {mat: $scope.user.matricule})
                     .success(function (data) {
                         if (data === 'Invalid') {
                             $scope.invalid2014 = true;
                         }
+
+                        angular.forEach(data, function(value, key) {
+                            angular.forEach(value, function(value, key) {
+                                value.Selected = false;
+                            });
+                        });
 
                         $scope.data2014 = data;
 
@@ -104,13 +107,18 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                     });
 
                 // 2015
-                $http.post($scope.serverPath + '/getData2015', {mat: $scope.matricule})
+                $http.post($scope.serverPath + '/getData2015', {mat: $scope.user.matricule})
                     .success(function (data) {
                         if (data === 'Invalid') {
                             $scope.invalid2015 = true;
                         }
 
                         $scope.data2015 = data;
+                        angular.forEach(data, function(value, key) {
+                            angular.forEach(value, function(value, key) {
+                                value.Selected = false;
+                            });
+                        });
 
                         $scope.dataAep.profs = $scope.dataAep.profs.concat($scope.data2015.profs);
                         $scope.dataAep.charges = $scope.dataAep.charges.concat($scope.data2015.charges);
@@ -137,10 +145,10 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
 
                 var vote = null;
 
-                if ($scope.type === 'prepa') {
+                if ($scope.user.type === 'prepa') {
 
                     vote = {
-                        matricule: $scope.matricule,
+                        matricule: $scope.user.matricule,
                         nom: $scope.votePrepa.nom.Name,
                         sigle: $scope.votePrepa.nom.Sigle,
                         nomCustom: $scope.votePrepa.nomCustom
@@ -151,10 +159,10 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                             vote = null;
                         });
                 }
-                else if ($scope.type === 'aep') {
+                else if ($scope.user.type === 'aep') {
 
                     vote = {
-                        matricule: $scope.matricule,
+                        matricule: $scope.user.matricule,
                         prof: $scope.voteAep.prof.Name,
                         profSigle: $scope.voteAep.prof.Sigle,
                         profCustom: $scope.voteAep.profCustom,
@@ -177,10 +185,10 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                             vote = null;
                         });
                 }
-                else if ($scope.type === 'aecsp') {
+                else if ($scope.user.type === 'aecsp') {
 
                     vote = {
-                        matricule: $scope.matricule,
+                        matricule: $scope.user.matricule,
                         nom: $scope.voteAecsp.nom.Name,
                         sigle: $scope.voteAecsp.nom.Sigle,
                         nomCustom: $scope.voteAecsp.nomCustom
@@ -191,6 +199,21 @@ angular.module('core').controller('SondageController', ['$scope', '$http',
                             vote = null;
                         });
                 }
+            },
+
+            selectPrepa: function (p) {
+                if (p.Selected) {
+                    p.Selected = false;
+                    $scope.votePrepa = {};
+                    return;
+                }
+
+                angular.forEach($scope.dataPrepa, function(value, key) {
+                    value.Selected = false;
+                });
+
+                p.Selected = true;
+                $scope.votePrepa.nom = p;
             }
         };
     }]);
