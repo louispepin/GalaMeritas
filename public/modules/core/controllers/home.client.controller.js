@@ -6,8 +6,8 @@ angular.module('core').controller('HomeController', ['$scope', '$http',
 		$scope.votes = 0;
 		$scope.but = 750;
 
-        $scope.serverPath = 'http://localhost:3000';
-        //$scope.serverPath = 'https://meritas.aep.polymtl.ca';
+        //$scope.serverPath = 'http://localhost:3000';
+        $scope.serverPath = 'https://meritas.aep.polymtl.ca';
 
         $http.post($scope.serverPath + '/getNbVotes', {})
             .success(function (data) {

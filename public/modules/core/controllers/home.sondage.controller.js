@@ -38,7 +38,9 @@ angular.module('core').controller('SondageController', ['$scope', '$http', '$fil
             $scope.matriculeValide = !isNaN($scope.user.matricule);
         })
 
-        $scope.serverPath = 'http://localhost:3000';
+        //$scope.serverPath = 'http://localhost:3000';
+        $scope.serverPath = 'https://meritas.aep.polymtl.ca';
+
 
         $scope.actions = {
             submitId: function () {
