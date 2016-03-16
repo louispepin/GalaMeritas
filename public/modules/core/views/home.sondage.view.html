@@ -83,8 +83,7 @@
             qui vous ont enseigné cette année.
         </small>
     </div>
-    <button class="btn btn-primary" ng-disabled="user.matricule == '' || user.type == ''" ng-click="actions.submitId()">Soumettre</button>
-    <div ng-show="!matriculeValide" style="color: red">Le matricule entré est invalide!</div>
+    <button class="btn btn-primary" ng-disabled="!user.matricule || !user.type || !matriculeValide" ng-click="actions.submitId()">Soumettre</button>
 
     <!--
     PREPA
@@ -99,29 +98,18 @@
             </div>
 
             <div class="jumbotron">
-                <div class="grid container" style="background-color: rgba(255, 255, 255, 0)">
-                    <div class="row">
-                        <p>Nom</p>
-                    </div>
+                <div class="vote-group">
                     <div class="form-group">
-                        <div ng-repeat="p in dataPrepa" class="col-md-6">
-                            <div ng-click="actions.selectPrepa(p)">
-                                <button type="button"
-                                        class="form-control"
-                                        ng-class="{selected: p.Selected == true}"
-                                        style="font-size: 12px">
-                                     {{p.Sigle}} - {{p.Name}} <span ng-if="p.Selected" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                </button>
-                            </div>
-                        </div>
+                        <label>Nom</label>
+                        <select ng-model="votePrepa.nom" ng-options="p.Sigle + ' - ' + p.Name for p in dataPrepa | orderBy:'Sigle' | unique:'Name'" ng-disabled="votePrepa.nomCustom" class="form-control">
+                            <option value="">Votre choix...</option>
+                        </select>
                     </div>
-                </div>
 
-                <div class="row" style="margin-top: 40px">
-                    <p>Nom s'il n'est pas dans la liste</p>
-                </div>
-                <div class="row">
-                    <input type="text" ng-model="votePrepa.nomCustom" class="form-control" ng-disabled="votePrepa.nom" placeholder="Sigle du cours - Nom" />
+                    <div class="form-group">
+                        <label>Nom du professeur s'il n'est pas dans la liste</label>
+                        <input type="text" ng-model="votePrepa.nomCustom" class="form-control" ng-disabled="votePrepa.nom" placeholder="Sigle du cours - Nom" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,7 +117,7 @@
         <a class="btn btn-primary"
            ng-click="actions.submitVote()"
            ng-disabled="!votePrepa.nom && !votePrepa.nomCustom"
-           href="#!/merci/">
+           href="#!/merci">
             Envoyer mes votes!
         </a>
     </div>
@@ -213,59 +201,11 @@
                 </div>
             </div>
 
-            <!--
-            SSH
-            -->
-            <p style="margin-top: 20px">Meilleur chargé ou enseignant pour les cours SSH</p>
-            <div>
-                Votez pour tout enseignant, chargé ou auxiliaire pour vos cours SSH.
-            </div>
-
-            <div class="jumbotron">
-                <div class="vote-group">
-                    <div class="forg-group">
-                        <label>Nom</label>
-                        <select ng-model="voteAep.ssh" ng-options="s.Sigle + ' - ' + s.Name for s in dataAep.ssh | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.sshCustom" class="form-control">
-                            <option value="">Votre choix...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.sshCustom" class="form-control" ng-disabled="voteAep.ssh" placeholder="Sigle du cours - Nom" />
-                    </div>
-                </div>
-            </div>
-
-            <!--
-            MTH
-            -->
-            <p style="margin-top: 20px">Meilleur chargé ou enseignant pour les cours MTH</p>
-            <div>
-                Votez pour tout enseignant, chargé ou auxiliaire pour vos cours MTH.
-            </div>
-
-            <div class="jumbotron">
-                <div class="vote-group">
-                    <div class="forg-group">
-                        <label>Nom</label>
-                        <select ng-model="voteAep.mth" ng-options="m.Sigle + ' - ' + m.Name for m in dataAep.mth | orderBy:'Sigle' | unique:'Name'" ng-disabled="voteAep.mthCustom" class="form-control">
-                            <option value="">Votre choix...</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Nom s'il n'est pas dans la liste</label>
-                        <input type="text" ng-model="voteAep.mthCustom" class="form-control" ng-disabled="voteAep.mth" placeholder="Sigle du cours - Nom" />
-                    </div>
-                </div>
-            </div>
-
             <a class="btn btn-primary"
                     ng-click="actions.submitVote()"
                     ng-disabled="!voteAep.prof && !voteAep.charge && !voteAep.aux && !voteAep.ssh && !voteAep.mth &&
                                     !voteAep.profCustom && !voteAep.chargeCustom && !voteAep.auxCustom && !voteAep.sshCustom && !voteAep.mthCustom";
-                    href="#!/merci/">
+                    href="#!/merci">
                 Envoyer mes votes!
             </a>
         </div>
@@ -304,7 +244,7 @@
         <a class="btn btn-primary"
            ng-click="actions.submitVote()"
            ng-disabled="!voteAecsp"
-           href="#!/merci/">
+           href="#!/merci">
             Envoyer mes votes!
         </a>
     </div>

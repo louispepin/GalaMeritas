@@ -2,7 +2,8 @@
 
 module.exports = {
 	port: 443,
-	db: 'mongodb://admin:rockyourmeritas@ds029107.mongolab.com:29107/galameritas_2015',
+	//db: 'mongodb://admin:rockyourmeritas@ds029107.mongolab.com:29107/galameritas_2015',
+	db: 'mongodb://admin:rockyourmeritas@ds015929.mlab.com:15929/galameritas_2016',
 	assets: {
 		lib: {
 			css: [
